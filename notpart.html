@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Report Card</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        .container { max-width: 800px; margin: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Report Card</h2>
+        <form id="reportCardForm">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" required><br><br>
+            
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Class Score (50%)</th>
+                    <th>Exam Score (50%)</th>
+                    <th>Total Score (100%)</th>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td><input type="number" id="englishClass" min="0" max="50"></td>
+                    <td><input type="number" id="englishExam" min="0" max="50"></td>
+                    <td id="englishTotal">0</td>
+                </tr>
+                <tr>
+                    <td>Math</td>
+                    <td><input type="number" id="mathClass" min="0" max="50"></td>
+                    <td><input type="number" id="mathExam" min="0" max="50"></td>
+                    <td id="mathTotal">0</td>
+                </tr>
+                 <tr>
+                    <td>SOCIAL</td>
+                    <td><input type="number" id="mathClass" min="0" max="50"></td>
+                    <td><input type="number" id="mathExam" min="0" max="50"></td>
+                    <td id="mathTotal">0</td>
+                </tr>
+            </table>
+            <br>
+            <button type="button" onclick="calculateScores()">Generate Report</button>
+        </form>
+        <h3>Final Report:</h3>
+        <p id="finalReport"></p>
+    </div>
+
+    <script>
+        function calculateScores() {
+            let englishClass = parseFloat(document.getElementById('englishClass').value) || 0;
+            let englishExam = parseFloat(document.getElementById('englishExam').value) || 0;
+            let mathClass = parseFloat(document.getElementById('mathClass').value) || 0;
+            let mathExam = parseFloat(document.getElementById('mathExam').value) || 0;
+            
+            let englishTotal = englishClass + englishExam;
+            let mathTotal = mathClass + mathExam;
+            
+            document.getElementById('englishTotal').innerText = englishTotal;
+            document.getElementById('mathTotal').innerText = mathTotal;
+            
+            let studentName = document.getElementById('studentName').value;
+            let finalReport = `Report for ${studentName}: English - ${englishTotal}, Math - ${mathTotal}`;
+            document.getElementById('finalReport').innerText = finalReport;
+        }
+    </script>
+</body>
+</html>
